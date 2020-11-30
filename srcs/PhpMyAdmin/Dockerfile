@@ -1,10 +1,13 @@
-FROM alpine
+FROM alpine:latest
 
-RUN apt-get -y update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get install -y php php-fpm wget
-RUN apt-get install -y php7.3-mysql
+RUN apk update && apk upgrade && apk add --no-cache bash openrc wget php7 php7-fpm php7-opcache
+RUN apk add --no-cache php7-gd php7-mysqli php7-zlib php7-curl
 
-RUN cd /var/www/html/ && wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-english.tar.gz \
+RUN cd /etc/ && wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-english.tar.gz \
 && tar -xvzf phpMyAdmin-5.0.2-english.tar.gz && mv phpMyAdmin-5.0.2-english phpmyadmin && rm phpMyAdmin-5.0.2-english.tar.gz
-COPY srcs/config_php var/www/html/phpmyadmin/config.inc.php
-RUN rm /etc/php/7.3/fpm/php.ini
-COPY srcs/php.ini /etc/php/7.3/fpm/php.ini
+COPY config_php var/www/html/phpmyadmin/config.inc.php
+COPY php.ini /etc/php/7.3/fpm/php.ini
+
+COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
+RUN chmod +x /usr/bin/docker-entrypoint.sh
+ENTRYPOINT bash docker-entrypoint.sh

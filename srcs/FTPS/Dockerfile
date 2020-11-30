@@ -2,7 +2,7 @@ FROM alpine:latest
 
 ENV AUTOINDEX=on
 
-RUN apk update && apk upgrade && apk add --no-cache bash wget vsftpd
+RUN apk update && apk upgrade && apk add --no-cache bash wget openrc vsftpd
 
 RUN mkdir /srv/ftp && chown nobody:nogroup /srv/ftp && echo "anon" | tee /srv/ftp/anon.txt
 
