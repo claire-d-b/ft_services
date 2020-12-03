@@ -8,6 +8,8 @@ RUN cd /etc/ && wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.
 COPY config_php var/www/html/phpmyadmin/config.inc.php
 COPY php.ini /etc/php/7.3/fpm/php.ini
 
+EXPOSE 50 00
+
 COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh
