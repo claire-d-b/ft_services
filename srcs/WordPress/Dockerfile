@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk upgrade && apk add --no-cache wget
+RUN apk update && apk upgrade && apk add --no-cache bash wget openrc
 
 RUN mkdir /var/www && mkdir /var/www/html
 RUN cd /var/www/html/ && wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && touch .htaccess && chmod 660 .htaccess
