@@ -13,8 +13,6 @@ RUN cd /var/www/html/ && chown -R root /var/www/html && find /var/www/html -type
 RUN cd /var/www/html/ && wget https://api.wordpress.org/secret-key/1.1/salt/
 RUN cd /var/www/html/ && rm index.html
 
-EXPOSE 50 50
-
 COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh

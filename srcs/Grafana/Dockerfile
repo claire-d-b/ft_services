@@ -7,8 +7,6 @@ RUN wget http://dl-cdn.alpinelinux.org/alpine/edge/testing/x86_64/grafana-image-
 RUN wget http://dl-cdn.alpinelinux.org/alpine/edge/testing/x86_64/grafana-image-renderer-openrc-2.0.0-r0.apk 
 RUN wget http://dl-cdn.alpinelinux.org/alpine/edge/testing/x86_64/grafana-7.3.4-r0.apk && apk add grafana-7.3.4-r0.apk
 
-EXPOSE 30 00
-
 COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh
