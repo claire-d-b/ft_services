@@ -1,5 +1,4 @@
 #!/bin/sh
-docker system prune
 usermod -aG docker $USER && newgrp docker
 apt-get -y update && apt-get -y upgrade
 apt-get -y install wget
@@ -19,13 +18,12 @@ mv ./kubectl /usr/local/bin/kubectl
 apt-get update && apt-get install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
-apt-get update
 apt-get install -y kubectl
 cd ../../Nginx && docker build -t image-nginx .
 cd ../FTPS && docker build -t image-vsftpd .
 cd ../Grafana && docker build -t image-grafana .
 cd ../PhpMyAdmin && docker build -t image-phpmyadmin .
-cd ../WordPress/ && docker build -t image-wordpress .
+cd ../WordPress && docker build -t image-wordpress .
 cd ../InfluxDB && docker build -t image-influxdb .
 cd ../MySQL && docker build -t image-mysql .
 #cd ../Nginx && docker run -tid --name nginx image_nginx 
