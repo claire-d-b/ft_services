@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vsftpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vsftpd
+  template:
+    metadata:
+      labels:
+        app: vsftpd
+    spec:
+      containers:
+      - name: vsftpd
+        image: image-vsftpd
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 21
