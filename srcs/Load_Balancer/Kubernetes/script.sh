@@ -28,10 +28,16 @@ apt-get -y update #&& apt-get -y upgrade
 #cd ../InfluxDB && docker run -tid --name influxdb image_influxdb
 #cd ../MySQL && docker run -tid --name mysql image_mysql
 #cd ../Load_Balancer/Kubernetes
+minikube start --driver=docker --base-image="gcr.io/k8s-minikube/kicbase:v0.0.15-snapshot4@sha256:ef1f485b5a1cfa4c989bc05e153f0a8525968ec999e242efff871cbb31649c16"
+eval $(minikube docker-env)
+minikube addons enable dashboard
+minikube addons enable metrics-server
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 # On first install only
-#kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+if [ -e $config\-metallb\.yml ] ;
+then kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" ;
+fi
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: ConfigMap
@@ -46,11 +52,7 @@ data:
       addresses:
       - 192.168.49.1-192.168.49.254
 EOF
-minikube start --driver=docker
-eval $(minikube docker-env)
-minikube addons enable dashboard
-minikube addons enable metrics-server
-kubectl taint nodes --all node-role.kubernetes.io/master-
+#kubectl taint nodes --all node-role.kubernetes.io/master-
 cd ../../Nginx && docker build -t image-nginx .
 cd ../FTPS && docker build -t image-vsftpd .
 cd ../Grafana && docker build -t image-grafana .
@@ -63,49 +65,49 @@ cd ../Nginx/
 #kubectl create deployment nginx --image=image-nginx
 #kubectl set env deployment/nginx
 kubectl apply -f nginx.yaml
-kubectl run nginx --image=image-nginx --image-pull-policy='Never'
+kubectl run nginx --image=image-nginx --image-pull-policy='Never' --restart='Always' --save-config=true
 kubectl expose deployment nginx --port=80 --port=443 --type=LoadBalancer
 
 cd ../FTPS/
 #kubectl create deployment vsftpd --image=image-vsftpd
 #kubectl set env deployment/vsftpd
 kubectl apply -f vsftpd.yaml
-kubectl run vsftpd --image=image-vsftpd --image-pull-policy='Never'
+kubectl run vsftpd --image=image-vsftpd --image-pull-policy='Never' --restart='Always' --save-config=true
 kubectl expose deployment vsftpd --port=21 --type=LoadBalancer
 
 cd ../Grafana/
 #kubectl create deployment grafana --image=image-grafana
 #kubectl set env deployment/grafana
 kubectl apply -f grafana.yaml
-kubectl run grafana --image=image-grafana --image-pull-policy='Never'
+kubectl run grafana --image=image-grafana --image-pull-policy='Never' --restart='Always' --save-config=true
 kubectl expose deployment grafana --port=3000 --type=LoadBalancer
 
 cd ../PhpMyAdmin/
 #kubectl create deployment phpmyadmin --image=image-phpmyadmin 
 #kubectl set env deployment/phpmyadmin
 kubectl apply -f phpmyadmin.yaml
-kubectl run phpmyadmin --image=image-phpmyadmin --image-pull-policy='Never'
+kubectl run phpmyadmin --image=image-phpmyadmin --image-pull-policy='Never' --restart='Always' --save-config=true
 kubectl expose deployment phpmyadmin --port=5000 --type=LoadBalancer
 
 cd ../WordPress/
 #kubectl create deployment wordpress --image=image-wordpress 
 #kubectl set env deployment/wordpress
 kubectl apply -f wordpress.yaml
-kubectl run wordpress --image=image-wordpress --image-pull-policy='Never'
+kubectl run wordpress --image=image-wordpress --image-pull-policy='Never' --restart='Always' --save-config=true
 kubectl expose deployment wordpress --port=5050 --type=LoadBalancer
 
 cd ../InfluxDB/
 #kubectl create deployment influxdb --image=image-influxdb 
 #kubectl set env deployment/influxdb
 kubectl apply -f influxdb.yaml
-kubectl run influxdb --image=image-influxdb --image-pull-policy='Never'
+kubectl run influxdb --image=image-influxdb --image-pull-policy='Never' --restart='Always' --save-config=true
 kubectl expose deployment influxdb --port=3000 --type=ClusterIP
 
 cd ../MySQL/
 #kubectl create deployment mysql --image=image-mysql
 #kubectl set env deployment/mysql
 kubectl apply -f mysql.yaml
-kubectl run mysql --image=image-mysql --image-pull-policy='Never'
+kubectl run mysql --image=image-mysql --image-pull-policy='Never' --restart='Always' --save-config=true
 kubectl expose deployment mysql --port=5050 --type=ClusterIP
 
 cd ../Load_Balancer/Kubernetes

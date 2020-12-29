@@ -42,7 +42,7 @@ server {
         #
         # include snippets/snakeoil.conf;
 
-        server_name localhost;
+        server_name http://172.17.0.6;
         ssl_certificate /etc/nginx/ssl/nginx.crt;
         ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
@@ -61,24 +61,13 @@ server {
                 # try_files $uri $uri/ /index.php$is_args$args;
         }
 
-        location /wordpress/ {
-                return 307 localhost:5050;
+        location /wordpress {
+                return 307 http://172.17.0.14:5050;
         }
 
         location /phpmyadmin/ {
                 include proxy_params;
-                proxy_pass localhost:5000
-        }
-
-        # pass PHP scripts to FastCGI server
-        #
-        location ~ \.php$ {
-                include snippets/fastcgi-php.conf;
-        #
-        #       # With php-fpm (or other unix sockets):
-                fastcgi_pass unix:/run/php/php7.3-fpm.sock;
-        #       # With php-cgi (or other tcp sockets):
-        #       fastcgi_pass 127.0.0.1:9000;
+                proxy_pass http://172.17.0.13:5000
         }
 
         # deny access to .htaccess files, if Apache's document root

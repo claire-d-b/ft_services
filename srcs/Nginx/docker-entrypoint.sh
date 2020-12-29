@@ -4,7 +4,7 @@ then mv srcs/default_nginx_ai_on /etc/nginx/sites-available/default ;
 else mv srcs/default_nginx_ai_off /etc/nginx/sites-available/default ;
 fi
 rm -rf /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default ;
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 rc-update add nginx default
 rc boot
 rc-service nginx start
