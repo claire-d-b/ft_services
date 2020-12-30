@@ -3,10 +3,10 @@
 rm -rf /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 rc-update add php-fpm7 default
-rc boot
+openrc boot
 rc-service php-fpm7 start
 rc-update add nginx default
-rc boot
+openrc boot
 rc-service nginx start
 # -g sets global directives
 # a daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.
