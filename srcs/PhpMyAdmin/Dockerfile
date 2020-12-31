@@ -3,7 +3,8 @@ FROM alpine:latest
 RUN apk update && apk upgrade && apk add --no-cache bash openrc wget php7 php7-fpm php7-opcache nginx
 RUN apk add --no-cache php7-gd php7-mysqli php7-zlib php7-curl
 
-RUN cd /etc/ && wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-english.tar.gz \
+RUN mkdir -p /var/www/html
+RUN cd /var/www/html && wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-english.tar.gz \
 && tar -xvzf phpMyAdmin-5.0.2-english.tar.gz && mv phpMyAdmin-5.0.2-english phpmyadmin && rm phpMyAdmin-5.0.2-english.tar.gz
 COPY config_php var/www/html/phpmyadmin/config.inc.php
 COPY php.ini /etc/php/7.3/fpm/php.ini

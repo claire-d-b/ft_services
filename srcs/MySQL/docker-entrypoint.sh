@@ -13,14 +13,14 @@
 # echo "update mysql.user set plugin='mysql_native_password' where user='root';" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
 # echo "FLUSH PRIVILEGES;" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
 mysqld --user=root
-echo "CREATE DATABASE wordpress;" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo "USE wordpress;" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo CREATE USER 'admin'@'http://172.17.0.18' IDENTIFIED BY '' | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo CREATE USER 'user1'@'http://172.17.0.18:5050' IDENTIFIED BY '' | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo CREATE USER 'user2'@'http://172.17.0.18:5050' IDENTIFIED BY '' | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'http://172.17.0.18:5050' WITH GRANT OPTION;" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo "update mysql.user set plugin='mysql_native_password' where user='root';" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo "FLUSH PRIVILEGES;" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
-echo "exit" | mysql --port=13306 --host=http://172.17.0.18:5050 --user=root
+echo "CREATE DATABASE wordpress;" | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo "USE wordpress;" | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo CREATE USER 'admin'@'http://172.17.0.1' IDENTIFIED BY '' | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo CREATE USER 'user1'@'http://172.17.0.1:5050' IDENTIFIED BY '' | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo CREATE USER 'user2'@'http://172.17.0.1:5050' IDENTIFIED BY '' | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'http://172.17.0.1:5050' WITH GRANT OPTION;" | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo "update mysql.user set plugin='mysql_native_password' where user='root';" | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo "FLUSH PRIVILEGES;" | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
+echo "exit" | mysql --port=13306 --host=http://172.17.0.1:5050 --user=root
 sleep infinity & wait
 bash

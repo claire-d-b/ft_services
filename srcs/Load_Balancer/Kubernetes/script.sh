@@ -40,20 +40,6 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manife
 #else
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 #fi
-#cat <<EOF | kubectl create -f -
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  namespace: metallb-system
-#  name: config
-#data:
-#  config: |
-#    address-pools:
-#    - name: default
-#      protocol: layer2
-#      addresses:
-#      - 192.168.49.1-192.168.49.10
-#EOF
 kubectl apply -f config.yaml
 
 #kubectl taint nodes --all node-role.kubernetes.io/master-
@@ -70,49 +56,49 @@ cd ../Nginx/
 #kubectl set env deployment/nginx
 kubectl apply -f nginx.yaml
 #kubectl run nginx --image=image-nginx --image-pull-policy='Never' --restart='Always' --save-config=true
-kubectl expose deployment nginx --target-port=80 --target-port=443 --type=LoadBalancer
+#kubectl expose deployment nginx --target-port=80 --target-port=443 --type=LoadBalancer
 
 cd ../FTPS/
 #kubectl create deployment vsftpd --image=image-vsftpd
 #kubectl set env deployment/vsftpd
 kubectl apply -f vsftpd.yaml
 #kubectl run vsftpd --image=image-vsftpd --image-pull-policy='Never' --restart='Always' --save-config=true
-kubectl expose deployment vsftpd --target-port=21 --type=LoadBalancer
+#kubectl expose deployment vsftpd --target-port=21 --type=LoadBalancer
 
 cd ../Grafana/
 #kubectl create deployment grafana --image=image-grafana
 #kubectl set env deployment/grafana
 kubectl apply -f grafana.yaml
 #kubectl run grafana --image=image-grafana --image-pull-policy='Never' --restart='Always' --save-config=true
-kubectl expose deployment grafana --target-port=3000 --type=LoadBalancer
+#kubectl expose deployment grafana --target-port=3000 --type=LoadBalancer
 
 cd ../PhpMyAdmin/
 #kubectl create deployment phpmyadmin --image=image-phpmyadmin 
 #kubectl set env deployment/phpmyadmin
 kubectl apply -f phpmyadmin.yaml
 #kubectl run phpmyadmin --image=image-phpmyadmin --image-pull-policy='Never' --restart='Always' --save-config=true
-kubectl expose deployment phpmyadmin --target-port=5000 --type=LoadBalancer
+#kubectl expose deployment phpmyadmin --target-port=5000 --type=LoadBalancer
 
 cd ../WordPress/
 #kubectl create deployment wordpress --image=image-wordpress 
 #kubectl set env deployment/wordpress
 kubectl apply -f wordpress.yaml
 #kubectl run wordpress --image=image-wordpress --image-pull-policy='Never' --restart='Always' --save-config=true
-kubectl expose deployment wordpress --target-port=5050 --type=LoadBalancer
+#kubectl expose deployment wordpress --target-port=5050 --type=LoadBalancer
 
 cd ../InfluxDB/
 #kubectl create deployment influxdb --image=image-influxdb 
 #kubectl set env deployment/influxdb
 kubectl apply -f influxdb.yaml
 #kubectl run influxdb --image=image-influxdb --image-pull-policy='Never' --restart='Always' --save-config=true
-kubectl expose deployment influxdb --target-port=3000 --type=ClusterIP
+#kubectl expose deployment influxdb --target-port=3000 --type=ClusterIP
 
 cd ../MySQL/
 #kubectl create deployment mysql --image=image-mysql
 #kubectl set env deployment/mysql
 kubectl apply -f mysql.yaml
 #kubectl run mysql --image=image-mysql --image-pull-policy='Never' --restart='Always' --save-config=true
-kubectl expose deployment mysql --target-port=5050 --type=ClusterIP
+#kubectl expose deployment mysql --target-port=5050 --type=ClusterIP
 
 cd ../Load_Balancer/Kubernetes
 bash
