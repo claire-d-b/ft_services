@@ -6,6 +6,8 @@ metadata:
     metallb.universe.tf/allow-shared-ip: shared-ip
 spec:
   type: LoadBalancer
+  selector:
+    app: wordpress
   ports:
     - name: http
       port: 5050

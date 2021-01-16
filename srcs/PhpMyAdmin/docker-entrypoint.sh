@@ -1,5 +1,4 @@
 #!/bin/sh
-/etc/nginx/sites-available/default
 rm -rf /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 rc-update add php-fpm7 default

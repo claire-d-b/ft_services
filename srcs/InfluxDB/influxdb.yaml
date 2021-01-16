@@ -6,6 +6,8 @@ metadata:
     metallb.universe.tf/allow-shared-ip: shared-ip
 spec:
   type: ClusterIP
+  selector:
+    app: influxdb
   ports:
     - name: http
       port: 8086

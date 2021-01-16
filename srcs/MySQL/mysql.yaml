@@ -3,12 +3,14 @@ kind: Service
 metadata:
   name: mysql
   annotations:
-    metallb.universe.tf/allow-shared-ip: shared-ip
+    metallb.universe.tf/allow-shared-ip: 127.0.0.2-127.0.0.2
 spec:
   type: ClusterIP
+  selector:
+    app: mysql
   ports:
     - name: http
-      port: 3306
+      port: 13306
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,4 +31,4 @@ spec:
         image: image-mysql
         imagePullPolicy: Never
         ports:
-        - containerPort: 5000
+        - containerPort: 13306
