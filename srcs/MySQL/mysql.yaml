@@ -10,7 +10,7 @@ spec:
     app: mysql
   ports:
     - name: http
-      port: 13306
+      port: 3306
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,4 +31,4 @@ spec:
         image: image-mysql
         imagePullPolicy: Never
         ports:
-        - containerPort: 13306
+        - containerPort: 3306

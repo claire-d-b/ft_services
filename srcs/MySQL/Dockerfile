@@ -9,7 +9,10 @@ RUN chmod u+rwx /etc/my.cnf.d
 
 #RUN /etc/init.d/mariadb setup
 
-COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
-RUN chmod +x /usr/bin/docker-entrypoint.sh
+COPY init_mysql.sh .
+RUN chmod +x init_mysql.sh
+
+COPY docker-entrypoint.sh .
+RUN chmod +x docker-entrypoint.sh
 
 ENTRYPOINT bash docker-entrypoint.sh
