@@ -15,10 +15,14 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 kubectl apply -f config.yaml
 
 #docker build -t image-nginx ./srcs/Nginx/
-#docker build -t image-phpmyadmin ./srcs/PhpMyAdmin/
+#docker build -t image-vsftpd ./srcs/FTPS/
+#docker build -t image-grafana ./srcs/Grafana/
+#docker build -t image-influxdb ./srcs/InfluxDB/
+#docker build -t image-nwordpress ./srcs/WordPress/
+docker build -t image-phpmyadmin ./srcs/PhpMyAdmin/
 docker build -t image-mysql ./srcs/MySQL/
 
-#kubectl apply -f ./srcs/PhpMyAdmin/phpmyadmin.yaml
+kubectl apply -f ./srcs/PhpMyAdmin/phpmyadmin.yaml
 #kubectl apply -f ./srcs/Nginx/nginx.yaml
 #kubectl apply -f ./srcs/FTPS/vsftpd.yaml
 #kubectl apply -f ./srcs/Grafana/grafana.yaml

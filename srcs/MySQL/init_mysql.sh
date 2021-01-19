@@ -16,7 +16,7 @@ done
 #echo "FLUSH PRIVILEGES;" | mysql -u root --skip-password
 #echo "use wordpress; source wordpress.sql;" | mysql
 
-echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');" | mysql --port=3306 --user=root
+#echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');" | mysql --port=3306 --user=root
 echo "FLUSH PRIVILEGES;" | mysql --port=3306 --user=root
 echo "SET old_passwords=0;" | mysql --port=3306 --user=root
 echo "CREATE DATABASE wordpress;" | mysql mysql --port=3306 --user=root
