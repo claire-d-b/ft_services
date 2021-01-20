@@ -1,5 +1,5 @@
 #!/bin/sh
-minikube delete
+#minikube delete
 minikube start --driver=docker #--base-image="gcr.io/k8s-minikube/kicbase:v0.0.15-snapshot4@sha256:ef1f485b5a1cfa4c989bc05e153f0a8525968ec999e242efff871cbb31649c16"
 eval $(minikube docker-env)
 minikube addons enable dashboard
@@ -18,7 +18,7 @@ kubectl apply -f config.yaml
 #docker build -t image-vsftpd ./srcs/FTPS/
 #docker build -t image-grafana ./srcs/Grafana/
 #docker build -t image-influxdb ./srcs/InfluxDB/
-#docker build -t image-nwordpress ./srcs/WordPress/
+#docker build -t image-wordpress ./srcs/WordPress/
 docker build -t image-phpmyadmin ./srcs/PhpMyAdmin/
 docker build -t image-mysql ./srcs/MySQL/
 
