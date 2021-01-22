@@ -1,5 +1,9 @@
 #!/bin/sh
+rm -rf ./etc/nginx/http.d/default.conf
 rc-update add php-fpm7 default
+openrc boot
 rc-update add nginx default
+openrc boot
 rc-service php-fpm7 start
-nginx -g 'pid /tmp/nginx.pid; daemon off;'
+rc-service nginx start
+sleep infinity & wait
