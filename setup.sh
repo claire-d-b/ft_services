@@ -4,6 +4,7 @@ minikube start --driver=docker #--base-image="gcr.io/k8s-minikube/kicbase:v0.0.1
 eval $(minikube docker-env)
 minikube addons enable dashboard
 minikube addons enable metrics-server
+minikube addons enable metallb
 kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
@@ -29,4 +30,3 @@ kubectl apply -f ./srcs/PhpMyAdmin/phpmyadmin.yaml
 #kubectl apply -f ./srcs/WordPress/wordpress.yaml
 #kubectl apply -f ./srcs/InfluxDB/influxdb.yaml
 kubectl apply -f ./srcs/MySQL/mysql.yaml
-bash

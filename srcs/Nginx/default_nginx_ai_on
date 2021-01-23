@@ -42,7 +42,7 @@ server {
         #
         # include snippets/snakeoil.conf;
 
-        server_name http://127.0.0.2;
+        server_name http://192.168.49.3;
         ssl_certificate /etc/nginx/ssl/nginx.crt;
         ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
@@ -62,7 +62,7 @@ server {
         }
 
         location /wordpress {
-                return 307 http://127.0.0.2:5050;
+                return 307 http://192.168.49.3:5050;
         }
 
         # deny access to .htaccess files, if Apache's document root
