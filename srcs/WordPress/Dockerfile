@@ -1,6 +1,10 @@
 FROM alpine:latest
 
-RUN apk update && apk upgrade && apk add --no-cache bash wget openrc nginx
+RUN apk update && apk upgrade && apk add --no-cache bash wget openrc openssl nginx
+
+RUN cd /etc/nginx/ && mkdir ssl
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out \
+/etc/nginx/ssl/nginx.crt -subj "/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=clde-ber/CN=helloworld"
 
 RUN mkdir /var/www/html
 RUN cd /var/www/html/ && wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && touch .htaccess && chmod 660 .htaccess
