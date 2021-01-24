@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+VOLUME ["/sys/fs/cgroup"]
+
 RUN apk update && apk upgrade && apk add --no-cache bash wget openrc openssl nginx
 
 RUN cd /etc/nginx/ && mkdir ssl
@@ -17,9 +19,8 @@ RUN cd /var/www/html/ && chown -R root /var/www/html && find /var/www/html -type
 RUN cd /var/www/html/ && wget https://api.wordpress.org/secret-key/1.1/salt/
 RUN cd /var/www/html/ && rm index.html
 
-COPY nginx.conf /etc/nginx/sites-available/default
-RUN  cd /etc/nginx/ && mkdir sites-enabled && ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+COPY nginx.conf srcs/nginx.conf
 
-COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
-RUN chmod +x /usr/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh
