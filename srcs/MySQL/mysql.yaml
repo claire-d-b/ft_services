@@ -4,7 +4,6 @@ metadata:
   name: mysql
   annotations:
     metallb.universe.tf/allow-shared-ip: 192.168.49.3-192.168.49.3
-    spec.loadBalancerIP: 192.168.49.3
 spec:
   type: ClusterIP
   selector:

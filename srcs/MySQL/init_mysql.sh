@@ -17,7 +17,7 @@ done
 #echo "use wordpress; source wordpress.sql;" | mysql
 
 #echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');" | mysql --port=3306 --user=root
-echo "FLUSH PRIVILEGES;" | mysql --port=3306 --user=root
+#echo "FLUSH PRIVILEGES;" | mysql --port=3306 --user=root
 echo "SET old_passwords=0;" | mysql --port=3306 --user=root
 echo "CREATE DATABASE wordpress;" | mysql mysql --port=3306 --user=root
 echo "USE wordpress;" | mysql --port=3306 --user=root
@@ -26,3 +26,4 @@ echo "GRANT ALL ON wordpress.* TO 'root'@'%';" | mysql --port=3306 --user=root
 #echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'%' WITH GRANT OPTION;" | mysql --port=3306 #--host=192.168.49.3 --user=root
 #echo "UPDATE mysql.user SET plugin='mysql_native_password' where user='root';" | mysql --port=3306 #--host=192.168.49.3 --user=root
 echo "FLUSH PRIVILEGES;" | mysql --port=3306 --user=root
+echo "exit" | mysql --port=3306 --user=root
