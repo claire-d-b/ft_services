@@ -31,4 +31,4 @@ spec:
         image: image-influxdb
         imagePullPolicy: Never
         ports:
-        - containerPort: 3000
+        - containerPort: 8086
