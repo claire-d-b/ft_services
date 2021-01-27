@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+VOLUME ["/sys/fs/cgroup"]
+
 RUN apk update && apk upgrade && apk add --no-cache bash openrc wget influxdb
 
 COPY docker-entrypoint.sh /usr/bin/docker-entrypoint.sh

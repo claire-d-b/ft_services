@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+VOLUME ["/sys/fs/cgroup"]
+
 ENV AUTOINDEX=on
 
 RUN apk update && apk upgrade && apk add --no-cache bash wget openrc vsftpd
