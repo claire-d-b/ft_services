@@ -5,6 +5,11 @@
 rc-update add influxdb default
 openrc boot
 rc-service influxdb start
-./create_db.sh
+until influx
+do
+  echo ""
+done
+echo "CREATE DATABASE influxdb;" | influx -username grafana
+echo "CREATE USER grafana WITH PASSWORD '' WITH ALL PRIVILEGES;" | influx -username grafana
 sleep infinity & wait
 bash
