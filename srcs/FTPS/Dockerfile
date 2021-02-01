@@ -11,7 +11,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/vsftpd/ssl/
 /etc/vsftpd/ssl/vsftpd.cert.pem -subj "/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=clde-ber/CN=helloworld"
 RUN chown root:root /etc/vsftpd/ssl/vsftpd.cert.pem && chmod 600 /etc/vsftpd/ssl/vsftpd.cert.pem
 
-RUN mkdir -p /srv/ftp && chown nobody:nogroup /srv/ftp && mkdir -p /etc/vsftpd/vsftpd_user_conf && mkdir -p var/run/vsftpd
+RUN mkdir -p /srv/ftp && mkdir -p /etc/vsftpd/vsftpd_user_conf && mkdir -p var/run/vsftpd
 
 COPY vsftpd.conf etc/vsftpd/vsftpd.conf
 RUN touch /etc/vsftpd/chroot.list && echo -en "clde-ber\n" > /etc/vsftpd/chroot.list
@@ -25,7 +25,7 @@ RUN touch etc/pam.d/vsftpd
 #db_load -T -t hash -f /etc/vsftpd/login.txt /etc/vsftpd/login.db && \
 #chmod 600 /etc/vsftpd/login.* && \
 RUN touch etc/vsftpd.user_list && echo -e "clde-ber\npassword" > etc/vsftpd.user_list && chmod 600 etc/vsftpd.user_list
-RUN adduser clde-ber -D && echo -e "password" | passwd clde-ber
+RUN adduser clde-ber -D && echo -e "@student.42.fr\n@student.42.fr" | passwd clde-ber
 
 COPY docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh

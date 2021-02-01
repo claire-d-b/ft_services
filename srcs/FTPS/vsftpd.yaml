@@ -9,8 +9,10 @@ spec:
   selector:
     app: vsftpd
   ports:
-    - name: http
+    - name: connection
       port: 21
+    - name: datatransfer
+      port: 20
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,3 +34,4 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 21
+        - containerPort: 20
