@@ -13,17 +13,8 @@ spec:
       port: 21
       nodePort: 30021
     - name: datatransfer
-      port: 20
-      nodePort: 30020
-    - name: user1
-      port: 30000
+      port: 30020
       nodePort: 30022
-    - name: user2
-      port: 30001
-      nodePort: 30023
-    - name: user3
-      port: 30002
-      nodePort: 30024
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,7 +36,4 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 21
-        - containerPort: 20
-        - containerPort: 30000
-        - containerPort: 30001
-        - containerPort: 30002
+        - containerPort: 30020
