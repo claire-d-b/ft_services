@@ -7,9 +7,10 @@ ENV AUTOINDEX=on
 RUN apk update && apk upgrade && apk add --no-cache bash wget openrc vsftpd openssl db-doc db db-utils
 
 RUN mkdir /etc/vsftpd/ssl
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/vsftpd/ssl/vsftpd.key.pem -out \
-/etc/vsftpd/ssl/vsftpd.cert.pem -subj "/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=clde-ber/CN=helloworld"
-RUN chown root:root /etc/vsftpd/ssl/vsftpd.cert.pem && chmod 600 /etc/vsftpd/ssl/vsftpd.cert.pem
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/vsftpd/ssl/vsftpd.key -out \
+/etc/vsftpd/ssl/vsftpd.crt -subj "/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=clde-ber/CN=helloworld"
+RUN chown root:root /etc/vsftpd/ssl/vsftpd.crt && chmod 600 /etc/vsftpd/ssl/vsftpd.crt
+RUN chown root:root /etc/vsftpd/ssl/vsftpd.key && chmod 600 /etc/vsftpd/ssl/vsftpd.key
 
 RUN mkdir -p /srv/ftp && mkdir -p /etc/vsftpd/vsftpd_user_conf && mkdir -p var/run/vsftpd
 

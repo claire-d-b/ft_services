@@ -11,8 +11,13 @@ spec:
   ports:
     - name: connection
       port: 21
+      nodePort: 30021
     - name: datatransfer
       port: 20
+      nodePort: 30020
+    - name: user1
+      port: 30000
+      nodePort: 30022
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,3 +40,4 @@ spec:
         ports:
         - containerPort: 21
         - containerPort: 20
+        - containerPort: 30000
