@@ -26,7 +26,7 @@ RUN touch etc/pam.d/vsftpd
 #db_load -T -t hash -f /etc/vsftpd/login.txt /etc/vsftpd/login.db && \
 #chmod 600 /etc/vsftpd/login.* && \
 RUN touch etc/vsftpd.user_list && echo -e "clde-ber\npassword" > etc/vsftpd.user_list && chmod 600 etc/vsftpd.user_list
-RUN adduser clde-ber -D && echo -e "@student.42.fr\n@student.42.fr" | passwd clde-ber
+RUN adduser clde-ber -D && echo -e "password\npassword" | passwd clde-ber
 
 COPY docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
