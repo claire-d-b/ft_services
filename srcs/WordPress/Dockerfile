@@ -20,6 +20,13 @@ RUN cd /var/www/html/ && rm index.html
 
 COPY nginx.conf srcs/nginx.conf
 
+RUN apk add php7-phar
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && wp cli update
+RUN wp core install --url=192.168.49.3:5050 --title=mysite --admin_user=admin --admin_email=admin@clde-ber.com
+RUN wp user update admin admin@clde-ber.com --role=administrator --user_pass=admin && wp user create user1 user1@clde-ber.com --role=editor --user_pass=user1 && \
+wp user create user2 user2@clde-ber.com --role=editor --user_pass=user2
+
 COPY docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh
