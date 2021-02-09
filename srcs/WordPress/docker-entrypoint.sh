@@ -10,5 +10,6 @@ rc-update add php-fpm7 default
 openrc boot
 rc-service nginx start
 rc-service php-fpm7 start
+nohup ./install_wp.sh 0</dev/null &
 sleep infinity & wait
 bash
