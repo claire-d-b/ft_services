@@ -11,6 +11,9 @@ RUN cd /etc/nginx/ && mkdir ssl
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out \
 /etc/nginx/ssl/nginx.crt -subj "/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=clde-ber/CN=helloworld"
 
+RUN apk add telegraf
+RUN telegraf config > telegraf.conf
+
 COPY docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh

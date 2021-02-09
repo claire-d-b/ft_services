@@ -26,6 +26,9 @@ RUN apk add php7-phar
 RUN cd var/www/html && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN cd var/www/html && chmod +x wp-cli.phar && mv wp-cli.phar ../../../usr/local/bin/wp && wp cli update
 
+RUN apk add telegraf
+RUN telegraf config > telegraf.conf
+
 COPY docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh
