@@ -42,9 +42,6 @@ RUN sed -i "s|;pid\s*=\s*run/php-fpm7.pid|pid = run/php-fpm7.pid|g" ./etc/php7/p
 
 COPY php.ini /etc/php7/php.ini
 
-RUN apk add telegraf
-RUN telegraf config > telegraf.conf
-
 COPY docker-entrypoint.sh docker-entrypoint.sh
 
 ENTRYPOINT ./docker-entrypoint.sh

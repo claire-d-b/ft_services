@@ -2,9 +2,6 @@
 # -g sets global directives
 # a daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.
 # daemon off directive prevents the container for stopping right after the command is executed, which would be the standard behavior of a conainter.
-rc-update add telegraf default
-openrc boot
-rc-service telegraf start
 sed -i 's+;protocol = http+protocol = http+g' etc/grafana.ini
 sed -i 's+;http_port = 3000+http_port = 3000+g' etc/grafana.ini
 sed -i 's+;domain = localhost+domain = 192.168.49.3+g' etc/grafana.ini

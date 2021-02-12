@@ -1,9 +1,6 @@
 #!/bin/sh
 rc-update add vsftpd default
 openrc boot
-rc-update add telegraf default
-openrc boot
-rc-service telegraf start
 rc-service vsftpd start
 # -g sets global directives
 # a daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.

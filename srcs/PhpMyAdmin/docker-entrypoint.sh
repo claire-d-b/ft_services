@@ -4,9 +4,6 @@ rc-update add php-fpm7 default
 openrc boot
 rc-update add nginx default
 openrc boot
-rc-update add telegraf default
-openrc boot
-rc-service telegraf start
 rc-service php-fpm7 start
 rc-service nginx start
 sleep infinity & wait

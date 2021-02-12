@@ -12,5 +12,5 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manife
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 #fi
 kubectl apply -f config.yaml
-docker build -t image-vsftpd ./srcs/FTPS/
-kubectl apply -f ./srcs/FTPS/vsftpd.yaml
+docker build -t image-influxdb ./srcs/InfluxDB/
+kubectl apply -f ./srcs/InfluxDB/influxdb.yaml

@@ -32,3 +32,10 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8086
+        volumeMounts:
+        - name: influxdb-data
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: influxdb-data
+        hostPath:
+          path: /var/run/docker.sock

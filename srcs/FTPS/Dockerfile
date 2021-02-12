@@ -28,9 +28,6 @@ RUN touch etc/pam.d/vsftpd
 RUN touch etc/vsftpd.user_list && echo -e "clde-ber\npassword" > etc/vsftpd.user_list && chmod 600 etc/vsftpd.user_list
 RUN adduser clde-ber -D && echo -e "password\npassword" | passwd clde-ber
 
-RUN apk add telegraf
-RUN telegraf config > telegraf.conf
-
 COPY docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT bash docker-entrypoint.sh

@@ -28,9 +28,6 @@
 #echo "UPDATE mysql.user SET plugin='mysql_native_password' where user='root';" | mysql --port=3306 #--host=192.168.49.3 --user=root
 #echo "FLUSH PRIVILEGES;" | mysql --port=3306 --user=root
 #sleep infinity & wait
-rc-update add telegraf default
-openrc boot
-rc-service telegraf start
 /usr/bin/mysql_install_db --user=mysql --datadir="/var/lib/mysql"
 nohup mysqld -u root 0</dev/null &
 ./init_mysql.sh

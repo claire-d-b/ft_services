@@ -16,7 +16,4 @@ RUN chmod +x init_mysql.sh
 COPY docker-entrypoint.sh .
 RUN chmod +x docker-entrypoint.sh
 
-RUN apk add telegraf
-RUN telegraf config > telegraf.conf
-
 ENTRYPOINT bash docker-entrypoint.sh
