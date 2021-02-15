@@ -35,6 +35,7 @@ spec:
         volumeMounts:
         - name: influxdb-data
           mountPath: /var/run/docker.sock
+      restartPolicy: Always
       volumes:
       - name: influxdb-data
         hostPath:

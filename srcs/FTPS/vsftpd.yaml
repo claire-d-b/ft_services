@@ -37,3 +37,4 @@ spec:
         ports:
         - containerPort: 21
         - containerPort: 30020
+      restartPolicy: Always

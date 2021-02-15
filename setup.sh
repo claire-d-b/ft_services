@@ -30,3 +30,5 @@ kubectl apply -f ./srcs/Grafana/grafana.yaml
 kubectl apply -f ./srcs/InfluxDB/influxdb.yaml
 kubectl apply -f ./srcs/MySQL/mysql.yaml
 kubectl apply -f ./srcs/WordPress/wordpress.yaml
+
+minikube dashboard
