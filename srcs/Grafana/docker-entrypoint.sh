@@ -1,7 +1,4 @@
 #!/bin/sh
-# -g sets global directives
-# a daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.
-# daemon off directive prevents the container for stopping right after the command is executed, which would be the standard behavior of a conainter.
 sed -i 's+;protocol = http+protocol = http+g' etc/grafana.ini
 sed -i 's+;http_port = 3000+http_port = 3000+g' etc/grafana.ini
 sed -i 's+;domain = localhost+domain = 192.168.49.3+g' etc/grafana.ini
@@ -16,4 +13,3 @@ sed -i 's+;admin_password = admin+admin_password = clde-ber@student.42.fr+g' etc
 sed -i 's+;secret_key+secret_key+g' etc/grafana.ini
 nohup /usr/sbin/grafana-server --config=/etc/grafana.ini --homepath=/usr/share/grafana 0</dev/null &
 sleep infinity & wait
-bash

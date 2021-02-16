@@ -8,8 +8,6 @@ RUN apk add --no-cache mysql mariadb mariadb-backup mariadb-bench mariadb-client
 COPY my.cnf /etc/my.cnf
 RUN chmod u+rwx /etc/my.cnf.d
 
-#RUN /etc/init.d/mariadb setup
-
 COPY init_mysql.sh .
 RUN chmod +x init_mysql.sh
 

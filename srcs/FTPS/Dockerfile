@@ -20,11 +20,6 @@ RUN touch /etc/vsftpd/chroot.list && echo -en "clde-ber\n" > /etc/vsftpd/chroot.
 COPY clde-ber.conf etc/vsftpd/vsftpd_user_conf
 
 RUN touch etc/pam.d/vsftpd
-#echo -e "#auth required /lib64/security/pam_userdb.so db=/etc/vsftpd/login\n#account required /lib64/security/pam_userdb.so db=/etc/vsftpd/login" >  etc/pam.d/vsftpd && \
-#touch etc/vsftpd/login.txt && \
-#echo -e "clde-ber\npassword" > etc/vsftpd/login.txt && \
-#db_load -T -t hash -f /etc/vsftpd/login.txt /etc/vsftpd/login.db && \
-#chmod 600 /etc/vsftpd/login.* && \
 RUN touch etc/vsftpd.user_list && echo -e "clde-ber\npassword" > etc/vsftpd.user_list && chmod 600 etc/vsftpd.user_list
 RUN adduser clde-ber -D && echo -e "password\npassword" | passwd clde-ber
 

@@ -5,14 +5,6 @@ VOLUME ["/sys/fs/cgroup"]
 RUN apk update && apk upgrade && apk add --no-cache bash openrc wget openssl php7 php7-fpm php7-opcache nginx
 RUN apk add --no-cache php7-gd php7-mysqli php7-zlib php7-curl php7-mbstring
 
-#RUN chmod -R 777 /var/www/html/ && chmod -R 777 /var/www/html/phpmyadmin/
-
-#RUN openrc && touch /run/openrc/softlevel
-
-#RUN rc-update add nginx default
-
-#RUN rc-service nginx restart
-
 RUN cd /etc/nginx/ && mkdir ssl
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out \
 /etc/nginx/ssl/nginx.crt -subj "/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=clde-ber/CN=helloworld"
@@ -38,7 +30,6 @@ RUN sed -i "s|;pid\s*=\s*run/php-fpm7.pid|pid = run/php-fpm7.pid|g" ./etc/php7/p
 && sed -i "s|user\s*=\s*nobody|user = nginx|g" ./etc/php7/php-fpm.d/www.conf \
 && sed -i "s|group\s*=\s*nobody|group = nginx|g" ./etc/php7/php-fpm.d/www.conf \
 && sed -i "s|;log_level\s*=\s*notice|log_level = notice|g" ./etc/php7/php-fpm.d/www.conf
-#&& sed -i "s|;listen.allowed_clients\s*=\s*127.0.0.1|listen.allowed_clients = 127.0.0.1|g" ./etc/php7/php-fpm.d/www.conf
 
 COPY php.ini /etc/php7/php.ini
 

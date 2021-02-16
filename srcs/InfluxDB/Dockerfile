@@ -12,8 +12,6 @@ RUN chmod +x create_db.sh
 
 RUN apk add telegraf
 COPY telegraf.conf /etc/telegraf.conf
-#COPY influxdb.conf /etc/influxdb.conf
-#RUN telegraf config > telegraf.conf
 
 COPY docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
