@@ -1,6 +1,5 @@
 #!/bin/sh
 sleep 20
-echo "heyheyhey"
 cd var/www/html && wp core install --url=192.168.49.3:5050 --title=mysite --admin_user=admin --admin_email=admin@clde-ber.com
 wp user update admin admin@clde-ber.com --role=administrator --user_pass=admin && wp user create user1 user1@clde-ber.com --role=editor --user_pass=user1 && \
 wp user create user2 user2@clde-ber.com --role=editor --user_pass=user2
