@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: influxdb
   annotations:
-    metallb.universe.tf/allow-shared-ip: 192.168.49.3-192.168.49.3
+    metallb.universe.tf/allow-shared-ip: 172.17.0.0-172.17.0.0
 spec:
   type: ClusterIP
   selector:

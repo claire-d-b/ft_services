@@ -1,7 +1,7 @@
 #!/bin/sh
 sed -i 's+;protocol = http+protocol = http+g' etc/grafana.ini
 sed -i 's+;http_port = 3000+http_port = 3000+g' etc/grafana.ini
-sed -i 's+;domain = localhost+domain = 192.168.49.3+g' etc/grafana.ini
+sed -i 's+;domain = localhost+domain = 172.17.0.0+g' etc/grafana.ini
 sed -i 's+;root_url = %(protocol)s://%(domain)s:%(http_port)s/+root_url = %(protocol)s://%(domain)s:%(http_port)s/+g' etc/grafana.ini
 sed -i 's+;type = sqlite3+type = sqlite3+g' etc/grafana.ini
 sed -i 's+;host = 127.0.0.1:3306+host = 127.0.0.1:8086+g' etc/grafana.ini
