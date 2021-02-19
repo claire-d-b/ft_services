@@ -8,7 +8,7 @@ minikube addons enable metallb
 sleep 20
 new_ip=$(kubectl get nodes -o wide | grep minikube | cut -d " " -f 17)
 find $(pwd)/srcs -type f -exec \
-            sed -i 's/172.17.0.0/'"$new_ip"'/g' {} +
+            sed -i 's/192.168.49.2/'"$new_ip"'/g' {} +
 kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
@@ -17,7 +17,7 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manife
 #else
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 #fi
-kubectl apply -f config.yaml
+kubectl apply -f ./srcs/config.yaml
 
 docker build -t image-nginx ./srcs/Nginx/
 docker build -t image-vsftpd ./srcs/FTPS/
