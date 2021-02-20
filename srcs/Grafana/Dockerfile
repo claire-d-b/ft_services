@@ -6,6 +6,12 @@ RUN apk update && apk upgrade && apk add --no-cache bash openrc wget
 
 RUN apk add grafana
 
+#RUN rm -rf /usr/share/grafana/conf/provisioning/dashboards/sample.yaml
+#RUN rm -rf /usr/share/grafana/conf/provisioning/datasources/sample.yaml
+COPY dashb.yaml /usr/share/grafana/conf/provisioning/dashboards/
+COPY ds.yaml /usr/share/grafana/conf/provisioning/datasources/
+COPY dashboard.json /usr/share/grafana/conf/provisioning/dashboards/
+
 COPY change_pw.sh .
 RUN chmod +x change_pw.sh
 
