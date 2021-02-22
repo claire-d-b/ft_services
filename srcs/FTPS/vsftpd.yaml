@@ -60,7 +60,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - ftp 192.168.49.2
+            - ps aux | grep vsftpd
           initialDelaySeconds: 5
           periodSeconds: 5
       restartPolicy: Always
