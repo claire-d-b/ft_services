@@ -1,5 +1,6 @@
 #!/bin/sh
 #minikube delete
+#sudo chmod 777 /var/run/docker.sock
 minikube start --driver=docker #--base-image="gcr.io/k8s-minikube/kicbase:v0.0.15-snapshot4@sha256:ef1f485b5a1cfa4c989bc05e153f0a8525968ec999e242efff871cbb31649c16"
 eval $(minikube docker-env)
 minikube addons enable dashboard
