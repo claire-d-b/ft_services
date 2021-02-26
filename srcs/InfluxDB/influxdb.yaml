@@ -57,7 +57,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - echo "SHOW DATABASES;" | influx
+            - 'echo "SHOW DATABASES;" | influx'
           initialDelaySeconds: 5
           periodSeconds: 5
       restartPolicy: Always

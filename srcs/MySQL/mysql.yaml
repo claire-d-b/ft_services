@@ -49,13 +49,13 @@ spec:
         - containerPort: 3306
         volumeMounts:
         - name: mysql-pvs
-          mountPath: /root/.mysql/
+          mountPath: /var/lib/mysql/mysql/
         livenessProbe:
           exec:
             command:
             - /bin/sh
             - -c
-            - echo "SHOW DATABASES;" | mysql -u root
+            - 'echo "SHOW DATABASES;" | mysql -u root'
           initialDelaySeconds: 5
           periodSeconds: 5
       restartPolicy: Always

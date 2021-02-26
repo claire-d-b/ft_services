@@ -32,4 +32,10 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 5050
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -I
+            - http://localhost:5050
       restartPolicy: Always

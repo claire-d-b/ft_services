@@ -54,13 +54,13 @@ spec:
         - containerPort: 30020
         volumeMounts:
         - name: vsftpd-pvs
-          mountPath: /root/.vsftpd/
+          mountPath: /etc/vsftpd/
         livenessProbe:
           exec:
             command:
             - /bin/sh
             - -c
-            - ps aux | grep vsftpd
+            - 'ps aux | grep vsftpd'
           initialDelaySeconds: 5
           periodSeconds: 5
       restartPolicy: Always

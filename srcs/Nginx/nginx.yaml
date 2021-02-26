@@ -35,4 +35,10 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -I
+            - http://localhost:80
       restartPolicy: Always

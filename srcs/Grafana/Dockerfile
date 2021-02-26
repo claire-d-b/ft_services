@@ -2,7 +2,7 @@ FROM alpine:latest
 
 VOLUME ["/sys/fs/cgroup"]
 
-RUN apk update && apk upgrade && apk add --no-cache bash openrc wget
+RUN apk update && apk upgrade && apk add --no-cache bash openrc wget curl
 
 RUN apk add grafana
 

@@ -2,7 +2,7 @@ FROM alpine:latest
 
 VOLUME ["/sys/fs/cgroup"]
 
-RUN apk update && apk upgrade && apk add --no-cache bash openrc wget nginx openssl
+RUN apk update && apk upgrade && apk add --no-cache bash openrc wget nginx openssl curl
 
 RUN mkdir srcs
 COPY nginx.conf /srcs/nginx.conf
