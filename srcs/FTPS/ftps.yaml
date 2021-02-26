@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: vsftpd
+  name: ftps
   annotations:
     metallb.universe.tf/allow-shared-ip: 192.168.49.2-192.168.49.2
 spec:
   type: LoadBalancer
   selector:
-    app: vsftpd
+    app: ftps
   ports:
     - name: connection
       port: 21
@@ -19,20 +19,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vsftpd
+  name: ftps
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vsftpd
+      app: ftps
   template:
     metadata:
       labels:
-        app: vsftpd
+        app: ftps
     spec:
       containers:
-      - name: vsftpd
-        image: image-vsftpd
+      - name: ftps
+        image: image-ftps
         imagePullPolicy: Never
         ports:
         - containerPort: 21
@@ -42,7 +42,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - 'ps aux | grep vsftpd'
+            - 'pgrep vsftpd'
           initialDelaySeconds: 5
           periodSeconds: 5
       restartPolicy: Always

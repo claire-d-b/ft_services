@@ -1,6 +1,7 @@
 #!/bin/sh
 #minikube delete
 #sudo chmod 777 /var/run/docker.sock
+#service docker start
 minikube start --driver=docker #--base-image="gcr.io/k8s-minikube/kicbase:v0.0.15-snapshot4@sha256:ef1f485b5a1cfa4c989bc05e153f0a8525968ec999e242efff871cbb31649c16"
 eval $(minikube docker-env)
 minikube addons enable dashboard
@@ -17,7 +18,7 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 kubectl apply -f ./srcs/config.yaml
 
 docker build -t image-nginx ./srcs/Nginx/
-docker build -t image-vsftpd ./srcs/FTPS/
+docker build -t image-ftps ./srcs/FTPS/
 docker build -t image-grafana ./srcs/Grafana/
 docker build -t image-influxdb ./srcs/InfluxDB/
 docker build -t image-phpmyadmin ./srcs/PhpMyAdmin/
@@ -26,7 +27,7 @@ docker build -t image-wordpress ./srcs/WordPress/
 
 kubectl apply -f ./srcs/PhpMyAdmin/phpmyadmin.yaml
 kubectl apply -f ./srcs/Nginx/nginx.yaml
-kubectl apply -f ./srcs/FTPS/vsftpd.yaml
+kubectl apply -f ./srcs/FTPS/ftps.yaml
 kubectl apply -f ./srcs/Grafana/grafana.yaml
 kubectl apply -f ./srcs/InfluxDB/influxdb.yaml
 kubectl apply -f ./srcs/MySQL/mysql.yaml
