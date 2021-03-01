@@ -35,7 +35,7 @@ spec:
         livenessProbe:
           exec:
             command:
-            - curl
-            - -I
-            - http://localhost:5000
+            - /bin/sh
+            - -c
+            - 'pgrep php-fpm7 && pgrep nginx'
       restartPolicy: Always
